@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - [Page Name]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - My Account</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background: #333; color: white; padding: 1rem; }
+        .user-header { display: flex; justify-content: space-between; align-items: center; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { color: white; text-decoration: none; }
+        .account-nav { background: #f4f4f4; padding: 15px; margin: 20px 0; }
+        .account-nav ul { display: flex; gap: 30px; list-style: none; }
+        .account-nav a { color: #333; text-decoration: none; font-weight: bold; }
+        .order-history { margin: 30px 0; }
+        details { background: #f9f9f9; padding: 15px; margin: 10px 0; border: 1px solid #ddd; }
+        summary { font-weight: bold; cursor: pointer; }
+        dl { margin: 15px 0; }
+        dt { font-weight: bold; margin-top: 10px; }
+        dd { margin-left: 20px; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="user-header">
+            <nav>
+                <ul>
+                    <li><a href="landing.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </nav>
+            <p>Welcome, John Doe!</p>
+        </div>
+    </header>
+
+    <nav class="account-nav">
+        <ul>
+            <li><a href="#orders">Order History</a></li>
+            <li><a href="#profile">Profile Settings</a></li>
+            <li><a href="#wishlist">Wishlist</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="orders" class="order-history">
+            <h2>Order History</h2>
+            
+            <details>
+                <summary>Order #12345 - March 15, 2026 - $279.98</summary>
+                <dl>
+                    <dt>Items:</dt>
+                    <dd>Wireless Headphones × 1 - $79.99</dd>
+                    <dd>Smart Watch × 1 - $199.99</dd>
+                    
+                    <dt>Shipping Address:</dt>
+                    <dd>John Doe, 123 Main St, New York, NY 10001</dd>
+                    
+                    <dt>Status:</dt>
+                    <dd>Delivered</dd>
+                    
+                    <dt>Tracking Number:</dt>
+                    <dd>TRK123456789</dd>
+                </dl>
+            </details>
+
+            <details>
+                <summary>Order #12346 - March 10, 2026 - $49.99</summary>
+                <dl>
+                    <dt>Items:</dt>
+                    <dd>Laptop Backpack × 1 - $49.99</dd>
+                    
+                    <dt>Shipping Address:</dt>
+                    <dd>John Doe, 123 Main St, New York, NY 10001</dd>
+                    
+                    <dt>Status:</dt>
+                    <dd>Shipped</dd>
+                    
+                    <dt>Tracking Number:</dt>
+                    <dd>TRK987654321</dd>
+                </dl>
+            </details>
+        </section>
+
+        <section id="profile">
+            <h2>Profile Settings</h2>
+            <!-- Profile settings form would go here -->
+        </section>
+
+        <section id="wishlist">
+            <h2>Wishlist</h2>
+            <!-- Wishlist items would go here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+    </footer>
+</body>
+</html>

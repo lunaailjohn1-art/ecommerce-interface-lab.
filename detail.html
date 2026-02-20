@@ -1,0 +1,121 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - [Page Name]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Product Details</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background: #333; color: white; padding: 1rem; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { color: white; text-decoration: none; }
+        .product-container { display: flex; gap: 40px; margin: 30px 0; }
+        .product-image { flex: 1; }
+        .product-info { flex: 1; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 10px; text-align: left; }
+        th { background: #f4f4f4; }
+        .reviews { margin: 30px 0; }
+        .review { background: #f9f9f9; padding: 15px; margin: 10px 0; border-left: 4px solid #333; }
+        .add-to-cart-form { background: #f4f4f4; padding: 20px; border-radius: 5px; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="landing.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-container">
+            <div class="product-image">
+                <img src="/api/placeholder/400/300" alt="Wireless Headphones" style="max-width: 100%;">
+            </div>
+            <div class="product-info">
+                <h1>Wireless Headphones</h1>
+                <p class="price">$79.99</p>
+                
+                <form class="add-to-cart-form">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+
+        <h2>Technical Specifications</h2>
+        <table>
+            <tr>
+                <th>Specification</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>AudioTech</td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>WH-1000XM4</td>
+            </tr>
+            <tr>
+                <td>Connectivity</td>
+                <td>Bluetooth 5.0</td>
+            </tr>
+            <tr>
+                <td>Battery Life</td>
+                <td>30 hours</td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td>250g</td>
+            </tr>
+            <tr>
+                <td>Warranty</td>
+                <td>1 year</td>
+            </tr>
+        </table>
+
+        <section class="reviews">
+            <h2>Customer Reviews</h2>
+            <article class="review">
+                <blockquote>
+                    "Excellent sound quality and comfortable to wear for long periods. Highly recommended!"
+                </blockquote>
+                <p>- John D. ★★★★★</p>
+            </article>
+            <article class="review">
+                <blockquote>
+                    "Great battery life and noise cancellation works perfectly. Worth every penny."
+                </blockquote>
+                <p>- Sarah M. ★★★★☆</p>
+            </article>
+            <article class="review">
+                <blockquote>
+                    "Good product but a bit pricey. The comfort level is amazing though."
+                </blockquote>
+                <p>- Mike R. ★★★★☆</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+    </footer>
+</body>
+</html>

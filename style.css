@@ -1,0 +1,397 @@
+/* ========================================
+   GLOBAL STYLES & CSS VARIABLES (TASK 1)
+   ======================================== */
+:root {
+    /* Primary color palette */
+    --primary-color: #2c3e50;      /* Dark blue-gray for headings */
+    --accent-color: #e67e22;        /* Orange accent for buttons */
+    --bg-light: #f4f4f4;            /* Light background */
+    --text-main: #333333;            /* Main text color */
+    --white: #ffffff;                /* White */
+    --success: #28a745;              /* Green for success */
+    --border-color: #ddd;            /* Border color */
+    --hover-dark: #1e293b;           /* Dark hover state */
+    --price-color: #e67e22;          /* Price highlight */
+    --table-header-bg: #f8f9fa;       /* Table header background */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+}
+
+h1, h2, h3 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+/* ========================================
+   INTERACTIVE STATES & TRANSITIONS (TASK 2)
+   ======================================== */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Remove default underline (Task 2.1) */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;  /* Clean look */
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    
+    /* Smooth transitions (Task 2.2) */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Hover effects (Task 2.3) */
+nav a:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    text-decoration: underline;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Active state - pressed effect (Task 2.4) */
+nav a:active {
+    transform: translateY(0);
+    background-color: #c0392b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Focus state for keyboard navigation (Task 2.5) */
+nav a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Button styling with transitions */
+button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+}
+
+button:active {
+    transform: scale(0.95);
+    background-color: #1e293b;
+}
+
+/* ========================================
+   PRODUCT LIST STYLING (TASK 3)
+   ======================================== */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.product-card, article {
+    width: 250px;  /* Fixed width for Task 3.1 */
+    display: inline-block;
+    border: 2px solid var(--border-color);
+    border-radius: 1.5rem;  /* Card appearance Task 3.2 */
+    background-color: var(--white);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Alternating background colors (Task 3.3) */
+.product-card:nth-child(odd),
+article:nth-child(odd) {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+.product-card:nth-child(even),
+article:nth-child(even) {
+    background-color: #f8f9fa;
+    border-color: var(--accent-color);
+}
+
+.product-card:hover,
+article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+article img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--price-color);
+    margin: 0.5rem 0;
+}
+
+/* ========================================
+   ADVANCED SELECTORS & PSEUDO-ELEMENTS (TASK 4)
+   ======================================== */
+
+/* Currency symbol with ::before (Task 4.2) */
+.price::before {
+    content: "$";
+    font-weight: bold;
+    margin-right: 2px;
+    color: var(--primary-color);
+}
+
+/* Empty cart styling (Task 4.1) */
+.cart-container:empty {
+    display: block;
+    padding: 40px;
+    text-align: center;
+    background: linear-gradient(45deg, #f3f3f3 25%, #e9e9e9 25%, #e9e9e9 50%, #f3f3f3 50%, #f3f3f3 75%, #e9e9e9 75%);
+    background-size: 20px 20px;
+    border: 3px dashed var(--primary-color);
+    border-radius: 2rem;
+    min-height: 200px;
+}
+
+.cart-container:empty::after {
+    content: "🛒 Your cart is empty. Start shopping!";
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Required field styling (Task 4.3) */
+input:required {
+    border-left: 4px solid #ff4444;
+    background-color: #fff8f8;
+}
+
+/* Valid input styling (Task 4.3) */
+input:valid {
+    border-left: 4px solid var(--success);
+    background-color: #f0fff0;
+}
+
+/* ========================================
+   DETAILED DATA STYLING (TASK 5)
+   ======================================== */
+
+/* Table styling - first column bold (Task 5.1) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+}
+
+/* First column styling */
+td:first-child {
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: #f8f9fa;
+}
+
+/* ::marker styling for order history (Task 5.2) */
+details summary::-webkit-details-marker {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+details summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* ::before and ::after for quotation marks (Task 5.3) */
+.review blockquote {
+    position: relative;
+    padding: 1.5rem 2.5rem;
+    background-color: var(--white);
+    border-radius: 1.5rem;
+    font-style: italic;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.review blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--accent-color);
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    opacity: 0.3;
+    font-family: serif;
+}
+
+.review blockquote::after {
+    content: '"';
+    font-size: 4rem;
+    color: var(--accent-color);
+    position: absolute;
+    right: 10px;
+    bottom: -30px;
+    opacity: 0.3;
+    font-family: serif;
+}
+
+/* ========================================
+   LAYOUT COMPONENTS
+   ======================================== */
+
+/* Footer styling */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 2rem;
+}
+
+/* Cart item styling */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    background-color: var(--white);
+    margin: 0.5rem 0;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+/* Checkout layout */
+.checkout-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.checkout-main {
+    flex: 2;
+}
+
+.checkout-sidebar {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    align-self: start;
+}
+
+/* Form fieldset styling */
+fieldset {
+    border: 2px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 0 1rem;
+    background-color: var(--white);
+    border-radius: 2rem;
+}
+
+/* Signup container */
+.signup-container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .product-grid {
+        justify-content: center;
+    }
+    
+    .checkout-container {
+        flex-direction: column;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+}
