@@ -1,121 +1,417 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - [Page Name]</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AilZaCafe - Product Details</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        header { background: #333; color: white; padding: 1rem; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        .product-container { display: flex; gap: 40px; margin: 30px 0; }
-        .product-image { flex: 1; }
-        .product-info { flex: 1; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 10px; text-align: left; }
-        th { background: #f4f4f4; }
-        .reviews { margin: 30px 0; }
-        .review { background: #f9f9f9; padding: 15px; margin: 10px 0; border-left: 4px solid #333; }
-        .add-to-cart-form { background: #f4f4f4; padding: 20px; border-radius: 5px; }
-        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --light-pink: #FED9FE;
+            --yellow: #FBBA00;
+            --orange: #E5781E;
+            --brown: #5A3D2B;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--brown);
+        }
+
+        header {
+            background-color: var(--brown);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--yellow);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-actions a {
+            color: var(--light-pink);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .user-actions a:first-child {
+            background-color: var(--yellow);
+            color: var(--brown);
+        }
+
+        .user-actions a:last-child {
+            border: 1px solid var(--yellow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .product-info h1 {
+            color: var(--brown);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-info .price {
+            color: var(--orange);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-info .price::after {
+            content: ' PHP';
+            font-size: 1rem;
+        }
+
+        .product-info .description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .add-to-cart-form {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-selector label {
+            font-weight: bold;
+        }
+
+        .quantity-selector input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid var(--light-pink);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--yellow);
+            color: var(--brown);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .specs-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .specs-section h2 {
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table tr {
+            border-bottom: 1px solid var(--light-pink);
+        }
+
+        table td {
+            padding: 1rem;
+        }
+
+        table td:first-child {
+            font-weight: bold;
+            color: var(--brown);
+            width: 30%;
+        }
+
+        table td:last-child {
+            color: #666;
+        }
+
+        .reviews-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .reviews-section h2 {
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .review {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--orange);
+        }
+
+        .review blockquote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .review footer {
+            background: none;
+            color: var(--brown);
+            font-weight: bold;
+            text-align: left;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--brown);
+            color: var(--light-pink);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
     </style>
 </head>
 <body>
     <header>
+        <a href="landing.html" class="logo">AilZaCafe</a>
         <nav>
             <ul>
                 <li><a href="landing.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="account.html">My Account</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
+        <div class="user-actions">
+            <a href="signup.html">Sign Up</a>
+            <a href="signin.html">Sign In</a>
+        </div>
     </header>
 
-    <main>
-        <div class="product-container">
-            <div class="product-image">
-                <img src="/api/placeholder/400/300" alt="Wireless Headphones" style="max-width: 100%;">
-            </div>
-            <div class="product-info">
-                <h1>Wireless Headphones</h1>
-                <p class="price">$79.99</p>
-                
-                <form class="add-to-cart-form">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-                    <button type="submit">Add to Cart</button>
-                </form>
-            </div>
-        </div>
-
-        <h2>Technical Specifications</h2>
-        <table>
-            <tr>
-                <th>Specification</th>
-                <th>Details</th>
-            </tr>
-            <tr>
-                <td>Brand</td>
-                <td>AudioTech</td>
-            </tr>
-            <tr>
-                <td>Model</td>
-                <td>WH-1000XM4</td>
-            </tr>
-            <tr>
-                <td>Connectivity</td>
-                <td>Bluetooth 5.0</td>
-            </tr>
-            <tr>
-                <td>Battery Life</td>
-                <td>30 hours</td>
-            </tr>
-            <tr>
-                <td>Weight</td>
-                <td>250g</td>
-            </tr>
-            <tr>
-                <td>Warranty</td>
-                <td>1 year</td>
-            </tr>
-        </table>
-
-        <section class="reviews">
-            <h2>Customer Reviews</h2>
-            <article class="review">
-                <blockquote>
-                    "Excellent sound quality and comfortable to wear for long periods. Highly recommended!"
-                </blockquote>
-                <p>- John D. ★★★★★</p>
-            </article>
-            <article class="review">
-                <blockquote>
-                    "Great battery life and noise cancellation works perfectly. Worth every penny."
-                </blockquote>
-                <p>- Sarah M. ★★★★☆</p>
-            </article>
-            <article class="review">
-                <blockquote>
-                    "Good product but a bit pricey. The comfort level is amazing though."
-                </blockquote>
-                <p>- Mike R. ★★★★☆</p>
-            </article>
-        </section>
-    </main>
+    <div class="container" id="productContainer">
+        <!-- Product details will be loaded here -->
+    </div>
 
     <footer>
-        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+        <p>&copy; 2026 AilZaCafe. All rights reserved.</p>
     </footer>
+
+    <script>
+        let currentProduct;
+
+        function loadProduct() {
+            const savedProduct = localStorage.getItem('currentProduct');
+            if (savedProduct) {
+                currentProduct = JSON.parse(savedProduct);
+                displayProduct();
+            } else {
+                // Default product if none selected
+                currentProduct = {
+                    id: 1,
+                    name: 'House Blend',
+                    price: 35,
+                    image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400',
+                    description: 'Our signature house blend coffee, carefully roasted to perfection. Features notes of chocolate and nuts with a smooth finish.'
+                };
+                displayProduct();
+            }
+        }
+
+        function displayProduct() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = `
+                <div class="product-main">
+                    <div class="product-image">
+                        <img src="${currentProduct.image}" alt="${currentProduct.name}">
+                    </div>
+                    <div class="product-info">
+                        <h1>${currentProduct.name}</h1>
+                        <p class="price">${currentProduct.price}</p>
+                        <p class="description">${currentProduct.description || 'Experience the perfect blend of premium coffee beans, roasted to bring out the best flavors. Sourced from sustainable farms and crafted with care.'}</p>
+                        
+                        <form class="add-to-cart-form" onsubmit="addToCart(event)">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+                            </div>
+                            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+
+                <section class="specs-section">
+                    <h2>Technical Specifications</h2>
+                    <table>
+                        <tr>
+                            <td>Roast Level</td>
+                            <td>Medium Roast</td>
+                        </tr>
+                        <tr>
+                            <td>Bean Type</td>
+                            <td>100% Arabica</td>
+                        </tr>
+                        <tr>
+                            <td>Origin</td>
+                            <td>Colombia, Ethiopia</td>
+                        </tr>
+                        <tr>
+                            <td>Flavor Notes</td>
+                            <td>Chocolate, Nuts, Caramel</td>
+                        </tr>
+                        <tr>
+                            <td>Caffeine Content</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>250g</td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td>Keep in cool, dry place</td>
+                        </tr>
+                        <tr>
+                            <td>Best Before</td>
+                            <td>6 months from roast date</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="reviews-section">
+                    <h2>Customer Reviews</h2>
+                    
+                    <article class="review">
+                        <blockquote>
+                            "Absolutely love this coffee! The flavor is rich and smooth. Best coffee I've had in a while."
+                        </blockquote>
+                        <footer>- Maria Santos</footer>
+                    </article>
+
+                    <article class="review">
+                        <blockquote>
+                            "Great value for money. The aroma is amazing and it brews perfectly every time."
+                        </blockquote>
+                        <footer>- Juan Dela Cruz</footer>
+                    </article>
+
+                    <article class="review">
+                        <blockquote>
+                            "Fast shipping and excellent quality. Will definitely order again!"
+                        </blockquote>
+                        <footer>- Ana Garcia</footer>
+                    </article>
+                </section>
+            `;
+        }
+
+        function addToCart(event) {
+            event.preventDefault();
+            const quantity = document.getElementById('quantity').value;
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({
+                name: currentProduct.name,
+                price: currentProduct.price,
+                quantity: parseInt(quantity),
+                image: currentProduct.image
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            alert(`Added ${quantity} x ${currentProduct.name} to cart! Total: ₱${currentProduct.price * quantity}`);
+            window.location.href = 'cart.html';
+        }
+
+        loadProduct();
+    </script>
 </body>
 </html>
