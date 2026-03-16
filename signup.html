@@ -1,81 +1,459 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - [Page Name]</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AilZaCafe - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f4f4f4; }
-        header { background: #333; color: white; padding: 1rem; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        .signup-container { max-width: 400px; margin: 40px auto; background: white; padding: 30px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .form-group input:focus { outline: none; border-color: #333; }
-        button { width: 100%; padding: 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #555; }
-        .login-link { text-align: center; margin-top: 20px; }
-        .login-link a { color: #333; text-decoration: none; }
-        .login-link a:hover { text-decoration: underline; }
-        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+        /* Override styles specifically for signup page with original color scheme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --light-pink: #FED9FE;
+            --yellow: #FBBA00;
+            --orange: #E5781E;
+            --brown: #5A3D2B;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-pink) 0%, #ffe6ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(90, 61, 43, 0.15);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Left Panel - Welcome Back Side */
+        .left-panel {
+            background: linear-gradient(135deg, var(--brown) 0%, #7a533a 100%);
+            padding: 3rem 2rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .left-panel h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--yellow);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            border-bottom: none;
+        }
+
+        .left-panel p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: var(--light-pink);
+            max-width: 280px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .signin-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--yellow);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: auto;
+            min-width: 140px;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .signin-btn:hover {
+            background-color: var(--yellow);
+            color: var(--brown);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .signin-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Right Panel - Sign Up Form */
+        .right-panel {
+            padding: 3rem 2.5rem;
+            background: white;
+        }
+
+        .right-panel h2 {
+            color: var(--brown);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            border-bottom: none;
+        }
+
+        .right-panel .subtitle {
+            color: #999;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.7rem;
+            border: 1px solid var(--light-pink);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            border-color: var(--orange);
+            background: var(--light-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 120, 30, 0.1);
+        }
+
+        .social-btn span {
+            font-size: 1.2rem;
+        }
+
+        .divider {
+            text-align: center;
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background-color: var(--light-pink);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--brown);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-pink);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(229, 120, 30, 0.1);
+        }
+
+        .form-group input:required {
+            border-left: 3px solid var(--orange);
+        }
+
+        .form-group input:required:valid {
+            border-color: #48bb78;
+            border-left-color: #48bb78;
+        }
+
+        .password-requirements {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--brown) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(229, 120, 30, 0.3);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            text-align: center;
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .login-link a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background-color: #fff5f5;
+            color: #c53030;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            font-size: 0.9rem;
+            border-left: 3px solid #c53030;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-panel {
+                display: none;
+            }
+            
+            .right-panel {
+                padding: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="landing.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="account.html">My Account</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="signin-btn" onclick="window.location.href='signin.html'">SIGN IN</button>
+        </div>
 
-    <main class="signup-container">
-        <h1 style="margin-bottom: 20px; text-align: center;">Create an Account</h1>
-        
-        <form>
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+        <div class="right-panel">
+            <h2>Create Account</h2>
+            <p class="subtitle">or use your email for registration</p>
+
+            <div class="social-login">
+                <button class="social-btn" onclick="socialSignup('facebook')">
+                    <span>📘</span> Facebook
+                </button>
+                <button class="social-btn" onclick="socialSignup('google')">
+                    <span>🔍</span> Google
+                </button>
+                <button class="social-btn" onclick="socialSignup('instagram')">
+                    <span>📷</span> Instagram
+                </button>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <div class="divider">
+                <span>or use your email for registration</span>
             </div>
 
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required placeholder="Create a password" minlength="8">
-            </div>
+            <div class="error-message" id="errorMessage"></div>
 
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
-            </div>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
 
-            <button type="submit">Sign Up</button>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
 
-            <div class="login-link">
-                <p>Already have an account? <a href="login.html">Log in</a></p>
-            </div>
-        </form>
-    </main>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a password" minlength="8" required>
+                    <div class="password-requirements">Must be at least 8 characters</div>
+                </div>
 
-    <footer>
-        <p>&copy; 2026 ShopEase. All rights reserved.</p>
-    </footer>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" minlength="8" required>
+                </div>
+
+                <button type="submit" class="signup-btn">SIGN UP</button>
+
+                <div class="login-link">
+                    Already have an account? <a href="signin.html">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorElement = document.getElementById('errorMessage');
+
+            // Validation
+            if (password.length < 8) {
+                errorElement.textContent = 'Password must be at least 8 characters long';
+                errorElement.classList.add('show');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorElement.textContent = 'Passwords do not match';
+                errorElement.classList.add('show');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                errorElement.textContent = 'Please enter a valid email address';
+                errorElement.classList.add('show');
+                return;
+            }
+
+            // Check if user already exists
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const existingUser = users.find(u => u.email === email);
+
+            if (existingUser) {
+                errorElement.textContent = 'An account with this email already exists';
+                errorElement.classList.add('show');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                name: name,
+                email: email,
+                password: password,
+                phone: '',
+                address: '',
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+            alert('Account created successfully! Welcome to AilZaCafe!');
+            window.location.href = 'account.html';
+        }
+
+        function socialSignup(provider) {
+            // Simulate social signup
+            const mockUser = {
+                name: `${provider} User`,
+                email: `user@${provider}.com`,
+                phone: '',
+                address: '',
+                createdAt: new Date().toISOString()
+            };
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push(mockUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(mockUser));
+
+            alert(`Signed up with ${provider}! Welcome to AilZaCafe!`);
+            window.location.href = 'account.html';
+        }
+    </script>
 </body>
 </html>
