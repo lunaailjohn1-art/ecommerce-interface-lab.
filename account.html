@@ -1,111 +1,692 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - [Page Name]</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - My Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AilZaCafe - My Account</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        header { background: #333; color: white; padding: 1rem; }
-        .user-header { display: flex; justify-content: space-between; align-items: center; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        .account-nav { background: #f4f4f4; padding: 15px; margin: 20px 0; }
-        .account-nav ul { display: flex; gap: 30px; list-style: none; }
-        .account-nav a { color: #333; text-decoration: none; font-weight: bold; }
-        .order-history { margin: 30px 0; }
-        details { background: #f9f9f9; padding: 15px; margin: 10px 0; border: 1px solid #ddd; }
-        summary { font-weight: bold; cursor: pointer; }
-        dl { margin: 15px 0; }
-        dt { font-weight: bold; margin-top: 10px; }
-        dd { margin-left: 20px; }
-        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --light-pink: #FED9FE;
+            --yellow: #FBBA00;
+            --orange: #E5781E;
+            --brown: #5A3D2B;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--brown);
+        }
+
+        header {
+            background-color: var(--brown);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--yellow);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-actions a {
+            color: var(--light-pink);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .user-actions a:first-child {
+            background-color: var(--yellow);
+            color: var(--brown);
+        }
+
+        .user-actions a:last-child {
+            border: 1px solid var(--yellow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .welcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .welcome-header h1 {
+            color: var(--brown);
+            font-size: 2rem;
+        }
+
+        .welcome-header h1 span {
+            color: var(--orange);
+        }
+
+        .logout-btn {
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .account-nav {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .account-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .account-nav ul li a {
+            color: var(--brown);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .account-nav ul li a:hover {
+            background-color: var(--yellow);
+            color: var(--brown);
+        }
+
+        .account-nav ul li a.active {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .profile-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-section h2 {
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .profile-form {
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--light-pink);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .save-btn {
+            background-color: var(--yellow);
+            color: var(--brown);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .save-btn:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .order-history {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .order-history h2 {
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .order-card {
+            background: #f9f9f9;
+            border: 2px solid var(--light-pink);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .order-header {
+            background: linear-gradient(135deg, var(--brown) 0%, #7a533a 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .order-header:hover {
+            background: linear-gradient(135deg, #7a533a 0%, var(--brown) 100%);
+        }
+
+        .order-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .order-header .order-status {
+            background-color: var(--yellow);
+            color: var(--brown);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .order-details {
+            padding: 1.5rem;
+            border-top: 2px solid var(--light-pink);
+        }
+
+        .order-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-pink);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-item .value {
+            font-weight: bold;
+            color: var(--brown);
+        }
+
+        .order-items-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-items-table th {
+            text-align: left;
+            padding: 0.5rem;
+            background-color: var(--light-pink);
+            color: var(--brown);
+            font-size: 0.9rem;
+        }
+
+        .order-items-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--light-pink);
+        }
+
+        .order-items-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .order-total-row {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--orange);
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .order-total-row span {
+            color: var(--orange);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: var(--brown);
+            color: var(--light-pink);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="user-header">
-            <nav>
-                <ul>
-                    <li><a href="landing.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="account.html">My Account</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                </ul>
-            </nav>
-            <p>Welcome, John Doe!</p>
+        <a href="landing.html" class="logo">AilZaCafe</a>
+        <nav>
+            <ul>
+                <li><a href="landing.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="signup.html">Sign Up</a>
+            <a href="signin.html">Sign In</a>
         </div>
     </header>
 
-    <nav class="account-nav">
-        <ul>
-            <li><a href="#orders">Order History</a></li>
-            <li><a href="#profile">Profile Settings</a></li>
-            <li><a href="#wishlist">Wishlist</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="orders" class="order-history">
-            <h2>Order History</h2>
-            
-            <details>
-                <summary>Order #12345 - March 15, 2026 - $279.98</summary>
-                <dl>
-                    <dt>Items:</dt>
-                    <dd>Wireless Headphones × 1 - $79.99</dd>
-                    <dd>Smart Watch × 1 - $199.99</dd>
-                    
-                    <dt>Shipping Address:</dt>
-                    <dd>John Doe, 123 Main St, New York, NY 10001</dd>
-                    
-                    <dt>Status:</dt>
-                    <dd>Delivered</dd>
-                    
-                    <dt>Tracking Number:</dt>
-                    <dd>TRK123456789</dd>
-                </dl>
-            </details>
-
-            <details>
-                <summary>Order #12346 - March 10, 2026 - $49.99</summary>
-                <dl>
-                    <dt>Items:</dt>
-                    <dd>Laptop Backpack × 1 - $49.99</dd>
-                    
-                    <dt>Shipping Address:</dt>
-                    <dd>John Doe, 123 Main St, New York, NY 10001</dd>
-                    
-                    <dt>Status:</dt>
-                    <dd>Shipped</dd>
-                    
-                    <dt>Tracking Number:</dt>
-                    <dd>TRK987654321</dd>
-                </dl>
-            </details>
-        </section>
-
-        <section id="profile">
-            <h2>Profile Settings</h2>
-            <!-- Profile settings form would go here -->
-        </section>
-
-        <section id="wishlist">
-            <h2>Wishlist</h2>
-            <!-- Wishlist items would go here -->
-        </section>
-    </main>
+    <div class="container" id="accountContainer">
+        <!-- Account content will be loaded here -->
+    </div>
 
     <footer>
-        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+        <p>&copy; 2026 AilZaCafe. All rights reserved.</p>
     </footer>
+
+    <script>
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const container = document.getElementById('accountContainer');
+
+            if (!user) {
+                container.innerHTML = `
+                    <div class="empty-state" style="background: white; border-radius: 20px; padding: 4rem;">
+                        <h2 style="color: var(--brown); margin-bottom: 1rem;">No Account Found</h2>
+                        <p style="margin-bottom: 2rem; color: #666;">Please sign in or create an account to view your profile.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <a href="signin.html" style="background-color: var(--yellow); color: var(--brown); text-decoration: none; padding: 1rem 2rem; border-radius: 5px; font-weight: bold;">Sign In</a>
+                            <a href="signup.html" style="background-color: var(--orange); color: white; text-decoration: none; padding: 1rem 2rem; border-radius: 5px; font-weight: bold;">Sign Up</a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            displayAccount(user);
+        }
+
+        function displayAccount(user) {
+            const container = document.getElementById('accountContainer');
+            
+            container.innerHTML = `
+                <div class="welcome-header">
+                    <h1>Welcome back, <span>${user.name || user.email}</span>!</h1>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="#" class="active" onclick="showSection('profile', event)">Profile Settings</a></li>
+                        <li><a href="#" onclick="showSection('orders', event)">Order History</a></li>
+                        <li><a href="#" onclick="showSection('wishlist', event)">Wishlist</a></li>
+                    </ul>
+                </nav>
+
+                <div id="profileSection" class="profile-section">
+                    <h2>Profile Information</h2>
+                    <form class="profile-form" onsubmit="updateProfile(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" value="${user.name || ''}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="${user.email}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" value="${user.phone || ''}" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Default Address</label>
+                            <input type="text" id="address" value="${user.address || ''}" placeholder="Enter your address">
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+
+                <div id="ordersSection" class="order-history" style="display: none;">
+                    <h2>Order History</h2>
+                    <div id="ordersList"></div>
+                </div>
+
+                <div id="wishlistSection" class="profile-section" style="display: none;">
+                    <h2>My Wishlist</h2>
+                    <div id="wishlistItems" class="product-grid"></div>
+                </div>
+            `;
+
+            // Load orders for the current user
+            loadUserOrders(user.email);
+            
+            // Load wishlist for the current user
+            loadUserWishlist(user.email);
+        }
+
+        function loadUserOrders(userEmail) {
+            const ordersList = document.getElementById('ordersList');
+            
+            // Get all orders from localStorage
+            const allOrders = JSON.parse(localStorage.getItem('allOrders')) || {};
+            
+            // Get orders for current user
+            const userOrders = allOrders[userEmail] || [];
+
+            if (!userOrders || userOrders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="empty-state">
+                        <p>You haven't placed any orders yet.</p>
+                        <a href="products.html" style="display: inline-block; margin-top: 1rem; color: var(--orange);">Start Shopping →</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort orders by date (newest first)
+            userOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            ordersList.innerHTML = userOrders.map(order => `
+                <div class="order-card">
+                    <div class="order-header" onclick="toggleOrderDetails('order-${order.id}')">
+                        <h3>
+                            <span>📦 Order #${order.id}</span>
+                            <span class="order-status">${order.status || 'Processing'}</span>
+                        </h3>
+                        <div>
+                            <span>${new Date(order.date).toLocaleDateString()}</span>
+                            <span style="margin-left: 1rem;">Total: ₱${typeof order.total === 'number' ? order.total.toFixed(2) : order.total}</span>
+                        </div>
+                    </div>
+                    
+                    <div id="order-${order.id}" class="order-details" style="display: none;">
+                        <div class="order-info-grid">
+                            <div class="info-item">
+                                <span class="label">Order Date</span>
+                                <span class="value">${new Date(order.date).toLocaleString()}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Payment Method</span>
+                                <span class="value">${order.paymentMethod || 'Credit Card'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Delivery Method</span>
+                                <span class="value">${order.deliveryMethod || 'Standard Delivery'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Shipping Address</span>
+                                <span class="value">${order.customer ? order.customer.address : 'Address not provided'}</span>
+                            </div>
+                        </div>
+
+                        <table class="order-items-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${order.items.map(item => `
+                                    <tr>
+                                        <td>${item.name}</td>
+                                        <td>${item.quantity || 1}</td>
+                                        <td>₱${item.price.toFixed ? item.price.toFixed(2) : item.price}</td>
+                                        <td>₱${(item.price * (item.quantity || 1)).toFixed(2)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+
+                        <div class="order-total-row">
+                            Subtotal: ₱${order.subtotal ? (typeof order.subtotal === 'number' ? order.subtotal.toFixed(2) : order.subtotal) : '0.00'} |
+                            Delivery Fee: ₱${order.deliveryFee || 20}.00 |
+                            <span>Total: ₱${typeof order.total === 'number' ? order.total.toFixed(2) : order.total}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleOrderDetails(orderId) {
+            const details = document.getElementById(orderId);
+            if (details) {
+                if (details.style.display === 'none') {
+                    details.style.display = 'block';
+                } else {
+                    details.style.display = 'none';
+                }
+            }
+        }
+
+        function loadUserWishlist(userEmail) {
+            const container = document.getElementById('wishlistItems');
+            
+            // Get all wishlists from localStorage
+            const allWishlists = JSON.parse(localStorage.getItem('wishlists')) || {};
+            
+            // Get wishlist for current user
+            const wishlist = allWishlists[userEmail] || [];
+
+            if (!wishlist || wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <p>Your wishlist is empty. Save items you love!</p>
+                        <a href="products.html" style="display: inline-block; margin-top: 1rem; color: var(--orange);">Browse Products →</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = wishlist.map(item => `
+                <article style="background: white; border: 2px solid var(--light-pink); border-radius: 10px; overflow: hidden;">
+                    <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 150px; object-fit: cover;">
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--brown); margin-bottom: 0.5rem;">${item.name}</h3>
+                        <p style="color: var(--orange); font-weight: bold; margin-bottom: 0.5rem;">₱${item.price}</p>
+                        <button onclick="addToCartFromWishlist(${item.id})" style="background-color: var(--yellow); color: var(--brown); border: none; padding: 0.5rem; border-radius: 5px; width: 100%; margin-bottom: 0.5rem; cursor: pointer;">Add to Cart</button>
+                        <button onclick="removeFromWishlist(${item.id})" style="background-color: #ff4444; color: white; border: none; padding: 0.5rem; border-radius: 5px; width: 100%; cursor: pointer;">Remove</button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function showSection(section, event) {
+            if (event) event.preventDefault();
+            
+            // Update active nav link
+            document.querySelectorAll('.account-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            if (event) event.target.classList.add('active');
+
+            // Show selected section
+            document.getElementById('profileSection').style.display = section === 'profile' ? 'block' : 'none';
+            document.getElementById('ordersSection').style.display = section === 'orders' ? 'block' : 'none';
+            document.getElementById('wishlistSection').style.display = section === 'wishlist' ? 'block' : 'none';
+            
+            // Reload data when switching to orders or wishlist sections
+            if (section === 'orders') {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) loadUserOrders(user.email);
+            } else if (section === 'wishlist') {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) loadUserWishlist(user.email);
+            }
+        }
+
+        function updateProfile(event) {
+            event.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            user.name = document.getElementById('name').value;
+            user.email = document.getElementById('email').value;
+            user.phone = document.getElementById('phone').value;
+            user.address = document.getElementById('address').value;
+            
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Update users array
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const index = users.findIndex(u => u.email === user.email);
+            if (index !== -1) {
+                users[index] = user;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+            
+            alert('Profile updated successfully!');
+            displayAccount(user);
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'landing.html';
+        }
+
+        function addToCartFromWishlist(productId) {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const allWishlists = JSON.parse(localStorage.getItem('wishlists')) || {};
+            const wishlist = allWishlists[user.email] || [];
+            const product = wishlist.find(item => item.id === productId);
+            
+            if (product) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    image: product.image
+                });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${product.name} added to cart!`);
+            }
+        }
+
+        function removeFromWishlist(productId) {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            let allWishlists = JSON.parse(localStorage.getItem('wishlists')) || {};
+            let wishlist = allWishlists[user.email] || [];
+            
+            wishlist = wishlist.filter(item => item.id !== productId);
+            allWishlists[user.email] = wishlist;
+            localStorage.setItem('wishlists', JSON.stringify(allWishlists));
+            
+            // Reload wishlist
+            loadUserWishlist(user.email);
+            alert('Item removed from wishlist!');
+        }
+
+        // Initialize the page
+        checkAuth();
+    </script>
 </body>
 </html>
