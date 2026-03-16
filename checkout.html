@@ -1,136 +1,580 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - [Page Name]</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AilZaCafe - Checkout</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        header { background: #333; color: white; padding: 1rem; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        .checkout-container { display: flex; gap: 30px; margin: 20px 0; }
-        .checkout-main { flex: 2; }
-        .checkout-sidebar { flex: 1; }
-        section { background: #f9f9f9; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
-        fieldset { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; }
-        legend { font-weight: bold; padding: 0 10px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; }
-        .form-group input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-        .radio-group { margin: 10px 0; }
-        .radio-group label { display: inline; margin-right: 20px; }
-        .order-summary { background: white; padding: 15px; }
-        .order-item { display: flex; justify-content: space-between; margin: 10px 0; }
-        .total-row { font-weight: bold; border-top: 2px solid #333; padding-top: 10px; margin-top: 10px; }
-        .place-order-btn { background: #28a745; color: white; padding: 12px 20px; border: none; width: 100%; cursor: pointer; }
-        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --light-pink: #FED9FE;
+            --yellow: #FBBA00;
+            --orange: #E5781E;
+            --brown: #5A3D2B;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--brown);
+        }
+
+        header {
+            background-color: var(--brown);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--yellow);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-actions a {
+            color: var(--light-pink);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .user-actions a:first-child {
+            background-color: var(--yellow);
+            color: var(--brown);
+        }
+
+        .user-actions a:last-child {
+            border: 1px solid var(--yellow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .checkout-main {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .checkout-main h2 {
+            color: var(--brown);
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .checkout-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .checkout-section h3 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        fieldset {
+            border: 2px solid var(--light-pink);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        legend {
+            color: var(--orange);
+            font-weight: bold;
+            padding: 0 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--brown);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--light-pink);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            color: var(--brown);
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: var(--orange);
+            width: 16px;
+            height: 16px;
+        }
+
+        .payment-details {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid var(--light-pink);
+        }
+
+        .payment-details.active {
+            display: block;
+        }
+
+        aside {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary h3 {
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light-pink);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 3px solid var(--orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--brown);
+        }
+
+        .summary-total span:last-child {
+            color: var(--orange);
+        }
+
+        .summary-total span:last-child::after {
+            content: ' PHP';
+            font-size: 0.9rem;
+        }
+
+        .place-order-btn {
+            background-color: var(--yellow);
+            color: var(--brown);
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        footer {
+            background-color: var(--brown);
+            color: var(--light-pink);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            aside {
+                position: static;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
+        <a href="landing.html" class="logo">AilZaCafe</a>
         <nav>
             <ul>
                 <li><a href="landing.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="account.html">My Account</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
+        <div class="user-actions">
+            <a href="signup.html">Sign Up</a>
+            <a href="signin.html">Sign In</a>
+        </div>
     </header>
 
-    <div class="checkout-container">
-        <main class="checkout-main">
-            <h1>Checkout</h1>
+    <div class="container">
+        <div class="checkout-container">
+            <main class="checkout-main">
+                <h2>Checkout</h2>
 
-            <section>
-                <fieldset>
-                    <legend>Shipping Address</legend>
-                    <div class="form-group">
-                        <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Street Address:</label>
-                        <input type="text" id="street" name="street" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="zip">ZIP Code:</label>
-                        <input type="text" id="zip" name="zip" required>
-                    </div>
-                </fieldset>
-            </section>
+                <section class="checkout-section">
+                    <h3>1. Shipping Information</h3>
+                    <fieldset>
+                        <legend>Shipping Address</legend>
+                        <div class="form-group">
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" placeholder="Enter your street address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" placeholder="Enter your city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipcode">ZIP Code *</label>
+                            <input type="text" id="zipcode" placeholder="Enter ZIP code" required>
+                        </div>
+                    </fieldset>
+                </section>
 
-            <section>
-                <form>
+                <section class="checkout-section">
+                    <h3>2. Payment Method</h3>
                     <fieldset>
                         <legend>Payment Details</legend>
                         <div class="radio-group">
                             <label>
-                                <input type="radio" name="payment" value="credit" checked> Credit Card
+                                <input type="radio" name="payment" value="Credit Card" checked onchange="togglePaymentDetails('credit')">
+                                Credit Card
                             </label>
                             <label>
-                                <input type="radio" name="payment" value="paypal"> PayPal
+                                <input type="radio" name="payment" value="PayPal" onchange="togglePaymentDetails('paypal')">
+                                PayPal
+                            </label>
+                            <label>
+                                <input type="radio" name="payment" value="GCash" onchange="togglePaymentDetails('gcash')">
+                                GCash
+                            </label>
+                            <label>
+                                <input type="radio" name="payment" value="Cash on Delivery" onchange="togglePaymentDetails('cod')">
+                                Cash on Delivery
                             </label>
                         </div>
-                        
-                        <div id="credit-card-details">
+
+                        <div id="creditDetails" class="payment-details active">
                             <div class="form-group">
-                                <label for="card-number">Card Number:</label>
-                                <input type="text" id="card-number" name="card-number">
+                                <label for="cardnumber">Card Number</label>
+                                <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456">
                             </div>
                             <div class="form-group">
-                                <label for="expiry">Expiry Date:</label>
-                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY">
                             </div>
                             <div class="form-group">
-                                <label for="cvv">CVV:</label>
-                                <input type="text" id="cvv" name="cvv">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123">
                             </div>
                         </div>
-                    </fieldset>
-                </form>
-            </section>
-        </main>
 
-        <aside class="checkout-sidebar">
-            <section class="order-summary">
-                <h2>Order Summary</h2>
-                <div class="order-item">
-                    <span>Wireless Headphones (1)</span>
-                    <span>$79.99</span>
+                        <div id="paypalDetails" class="payment-details">
+                            <div class="form-group">
+                                <label for="paypalemail">PayPal Email</label>
+                                <input type="email" id="paypalemail" placeholder="your@email.com">
+                            </div>
+                        </div>
+
+                        <div id="gcashDetails" class="payment-details">
+                            <div class="form-group">
+                                <label for="gcashnumber">GCash Number</label>
+                                <input type="tel" id="gcashnumber" placeholder="0912 345 6789">
+                            </div>
+                        </div>
+
+                        <div id="codDetails" class="payment-details">
+                            <p style="color: #666;">Pay with cash upon delivery</p>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <section class="checkout-section">
+                    <h3>3. Delivery Options</h3>
+                    <fieldset>
+                        <legend>Delivery Method</legend>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="delivery" value="Standard Delivery" checked onchange="updateOrderSummary()">
+                                Standard Delivery (30 mins) - ₱20
+                            </label>
+                            <label>
+                                <input type="radio" name="delivery" value="Express Delivery" onchange="updateOrderSummary()">
+                                Express Delivery (15 mins) - ₱50
+                            </label>
+                        </div>
+                    </fieldset>
+                </section>
+            </main>
+
+            <aside>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="orderItems"></div>
+                    <div class="summary-total" id="orderTotal">
+                        <span>Total</span>
+                        <span>0.00</span>
+                    </div>
+                    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
                 </div>
-                <div class="order-item">
-                    <span>Smart Watch (1)</span>
-                    <span>$199.99</span>
-                </div>
-                <div class="order-item">
-                    <span>Subtotal</span>
-                    <span>$279.98</span>
-                </div>
-                <div class="order-item">
-                    <span>Shipping</span>
-                    <span>Free</span>
-                </div>
-                <div class="order-item total-row">
-                    <span>Total</span>
-                    <span>$279.98</span>
-                </div>
-                <button class="place-order-btn">Place Order</button>
-            </section>
-        </aside>
+            </aside>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+        <p>&copy; 2026 AilZaCafe. All rights reserved.</p>
     </footer>
+
+    <script>
+        function togglePaymentDetails(method) {
+            document.querySelectorAll('.payment-details').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            if (method === 'credit') {
+                document.getElementById('creditDetails').classList.add('active');
+            } else if (method === 'paypal') {
+                document.getElementById('paypalDetails').classList.add('active');
+            } else if (method === 'gcash') {
+                document.getElementById('gcashDetails').classList.add('active');
+            } else if (method === 'cod') {
+                document.getElementById('codDetails').classList.add('active');
+            }
+        }
+
+        function updateOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const summary = document.getElementById('orderItems');
+            const delivery = document.querySelector('input[name="delivery"]:checked')?.value || 'Standard Delivery';
+            const deliveryFee = delivery === 'Express Delivery' ? 50 : 20;
+            
+            let subtotal = 0;
+            summary.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                subtotal += itemTotal;
+                summary.innerHTML += `
+                    <div class="summary-item">
+                        <span>${item.name} x${item.quantity || 1}</span>
+                        <span>₱${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+
+            summary.innerHTML += `
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>₱${subtotal.toFixed(2)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Delivery Fee</span>
+                    <span>₱${deliveryFee}.00</span>
+                </div>
+            `;
+
+            const total = subtotal + deliveryFee;
+            document.querySelector('#orderTotal span:last-child').textContent = total.toFixed(2);
+        }
+
+        function placeOrder() {
+            // Check if user is logged in
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                alert('Please sign in to place an order');
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            // Validate shipping information
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const zipcode = document.getElementById('zipcode').value;
+
+            if (!fullname || !email || !phone || !address || !city || !zipcode) {
+                alert('Please fill in all shipping information');
+                return;
+            }
+
+            // Get cart items
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty');
+                window.location.href = 'products.html';
+                return;
+            }
+
+            // Get payment method
+            const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value || 'Credit Card';
+            
+            // Get delivery method
+            const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value || 'Standard Delivery';
+            const deliveryFee = deliveryMethod === 'Express Delivery' ? 50 : 20;
+
+            // Calculate total
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+            const total = subtotal + deliveryFee;
+
+            // Create order object
+            const order = {
+                id: 'ORD-' + Date.now(),
+                date: new Date().toISOString(),
+                customer: {
+                    name: fullname,
+                    email: email,
+                    phone: phone,
+                    address: `${address}, ${city}, ${zipcode}`
+                },
+                items: cart.map(item => ({
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity || 1,
+                    image: item.image || ''
+                })),
+                subtotal: subtotal,
+                deliveryFee: deliveryFee,
+                total: total,
+                paymentMethod: paymentMethod,
+                deliveryMethod: deliveryMethod,
+                status: 'Processing',
+                userEmail: user.email
+            };
+
+            // Save order to user's order history
+            let allOrders = JSON.parse(localStorage.getItem('allOrders')) || {};
+            
+            // Initialize user's orders array if it doesn't exist
+            if (!allOrders[user.email]) {
+                allOrders[user.email] = [];
+            }
+            
+            // Add new order
+            allOrders[user.email].push(order);
+            localStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+            // Clear the cart
+            localStorage.removeItem('cart');
+
+            // Show success message
+            alert(`Order placed successfully! Order ID: ${order.id}\nThank you for shopping with AilZaCafe!`);
+
+            // Redirect to account page to see order history
+            window.location.href = 'account.html';
+        }
+
+        // Auto-fill user data if available
+        window.onload = function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user) {
+                if (user.name) document.getElementById('fullname').value = user.name;
+                if (user.email) document.getElementById('email').value = user.email;
+                if (user.phone) document.getElementById('phone').value = user.phone || '';
+                if (user.address) document.getElementById('address').value = user.address || '';
+            }
+            updateOrderSummary();
+        };
+    </script>
 </body>
 </html>
