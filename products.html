@@ -1,102 +1,573 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - [Page Name]</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AilZaCafe - Products</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        header { background: #333; color: white; padding: 1rem; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        .container { display: flex; gap: 30px; margin: 20px 0; }
-        aside { flex: 0 0 250px; background: #f4f4f4; padding: 20px; }
-        main { flex: 1; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        article { border: 1px solid #ddd; padding: 15px; text-align: center; }
-        article img { max-width: 100%; height: 150px; object-fit: cover; }
-        .filter-group { margin-bottom: 15px; }
-        .filter-group label { display: block; margin: 5px 0; }
-        footer { text-align: center; margin-top: 40px; padding: 20px; background: #333; color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --light-pink: #FED9FE;
+            --yellow: #FBBA00;
+            --orange: #E5781E;
+            --brown: #5A3D2B;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--brown);
+        }
+
+        header {
+            background-color: var(--brown);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--yellow);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-actions a {
+            color: var(--light-pink);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .user-actions a:first-child {
+            background-color: var(--yellow);
+            color: var(--brown);
+        }
+
+        .user-actions a:last-child {
+            border: 1px solid var(--yellow);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        aside {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-pink);
+        }
+
+        .filter-section h3 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .filter-option:hover {
+            color: var(--orange);
+        }
+
+        .filter-option input[type="checkbox"],
+        .filter-option input[type="radio"] {
+            accent-color: var(--orange);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .clear-filters {
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .clear-filters:hover {
+            background-color: var(--brown);
+        }
+
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        main h1 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .product-count {
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        article {
+            background: white;
+            border: 2px solid var(--light-pink);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(229, 120, 30, 0.2);
+        }
+
+        article img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-details h3 {
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-details .price {
+            color: var(--orange);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-details .price::after {
+            content: ' PHP';
+            font-size: 0.9rem;
+        }
+
+        .view-details {
+            background-color: var(--yellow);
+            color: var(--brown);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .view-details:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .wishlist-btn {
+            background-color: transparent;
+            border: 2px solid var(--orange);
+            color: var(--orange);
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .wishlist-btn.active {
+            background-color: var(--orange);
+            color: white;
+        }
+
+        .wishlist-btn.active::before {
+            content: '❤️ ';
+        }
+
+        .wishlist-btn::before {
+            content: '🤍 ';
+        }
+
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: var(--brown);
+            color: var(--light-pink);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+            
+            aside {
+                position: static;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
+        <a href="landing.html" class="logo">AilZaCafe</a>
         <nav>
             <ul>
                 <li><a href="landing.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="account.html">My Account</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
+        <div class="user-actions">
+            <a href="signup.html">Sign Up</a>
+            <a href="signin.html">Sign In</a>
+        </div>
     </header>
 
     <div class="container">
-        <aside>
-            <h2>Filters</h2>
-            <form>
-                <div class="filter-group">
-                    <h3>Category</h3>
-                    <label><input type="checkbox" name="category" value="electronics"> Electronics</label>
-                    <label><input type="checkbox" name="category" value="clothing"> Clothing</label>
-                    <label><input type="checkbox" name="category" value="books"> Books</label>
+        <div class="products-container">
+            <aside>
+                <h2 style="color: var(--brown); margin-bottom: 1.5rem;">Filters</h2>
+                
+                <div class="filter-section">
+                    <h3>Coffee Type</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="espresso" onchange="filterProducts()"> Espresso
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="latte" onchange="filterProducts()"> Latte
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="cappuccino" onchange="filterProducts()"> Cappuccino
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="americano" onchange="filterProducts()"> Americano
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="mocha" onchange="filterProducts()"> Mocha
+                    </label>
                 </div>
-                <div class="filter-group">
-                    <h3>Price Range</h3>
-                    <label><input type="radio" name="price" value="0-50"> $0 - $50</label>
-                    <label><input type="radio" name="price" value="50-100"> $50 - $100</label>
-                    <label><input type="radio" name="price" value="100+"> $100+</label>
-                </div>
-                <div class="filter-group">
-                    <h3>Rating</h3>
-                    <label><input type="radio" name="rating" value="4"> 4+ Stars</label>
-                    <label><input type="radio" name="rating" value="3"> 3+ Stars</label>
-                </div>
-            </form>
-        </aside>
 
-        <main>
-            <h1>All Products</h1>
-            <div class="product-grid">
-                <article>
-                    <img src="/api/placeholder/200/150" alt="Wireless Headphones">
-                    <h3>Wireless Headphones</h3>
-                    <p>$79.99</p>
-                    <a href="detail.html?id=1">View Details</a>
-                </article>
-                <article>
-                    <img src="/api/placeholder/200/150" alt="Smart Watch">
-                    <h3>Smart Watch</h3>
-                    <p>$199.99</p>
-                    <a href="detail.html?id=2">View Details</a>
-                </article>
-                <article>
-                    <img src="/api/placeholder/200/150" alt="Laptop Backpack">
-                    <h3>Laptop Backpack</h3>
-                    <p>$49.99</p>
-                    <a href="detail.html?id=3">View Details</a>
-                </article>
-                <article>
-                    <img src="/api/placeholder/200/150" alt="Bluetooth Speaker">
-                    <h3>Bluetooth Speaker</h3>
-                    <p>$39.99</p>
-                    <a href="detail.html?id=4">View Details</a>
-                </article>
-            </div>
-        </main>
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <label class="filter-option">
+                        <input type="radio" name="price" value="0-30" onchange="filterProducts()"> Below ₱30
+                    </label>
+                    <label class="filter-option">
+                        <input type="radio" name="price" value="30-50" onchange="filterProducts()"> ₱30 - ₱50
+                    </label>
+                    <label class="filter-option">
+                        <input type="radio" name="price" value="50-80" onchange="filterProducts()"> ₱50 - ₱80
+                    </label>
+                    <label class="filter-option">
+                        <input type="radio" name="price" value="80-999" onchange="filterProducts()"> Above ₱80
+                    </label>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Roast Level</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="roast" value="light" onchange="filterProducts()"> Light Roast
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="roast" value="medium" onchange="filterProducts()"> Medium Roast
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="roast" value="dark" onchange="filterProducts()"> Dark Roast
+                    </label>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Rating</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="rating" value="4" onchange="filterProducts()"> 4★ & above
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="rating" value="3" onchange="filterProducts()"> 3★ & above
+                    </label>
+                </div>
+
+                <button class="clear-filters" onclick="clearFilters()">Clear All Filters</button>
+            </aside>
+
+            <main>
+                <h1>Our Coffee Collection</h1>
+                <div class="product-count" id="productCount">Showing 8 products</div>
+                
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </main>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 ShopEase. All rights reserved.</p>
+        <p>&copy; 2026 AilZaCafe. All rights reserved.</p>
     </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'House Blend', price: 35, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400', type: 'espresso', roast: 'medium', rating: 4.5 },
+            { id: 2, name: 'Espresso Roast', price: 50, image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=400', type: 'espresso', roast: 'dark', rating: 4.8 },
+            { id: 3, name: 'French Vanilla', price: 39, image: 'https://images.unsplash.com/photo-1511920174518-f2637b8c8e2b?w=400', type: 'latte', roast: 'medium', rating: 4.3 },
+            { id: 4, name: 'Caramel Macchiato', price: 40, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400', type: 'latte', roast: 'light', rating: 4.6 },
+            { id: 5, name: 'Hazelnut Blend', price: 60, image: 'https://images.unsplash.com/photo-1462917882517-e150004695fa?w=400', type: 'cappuccino', roast: 'medium', rating: 4.4 },
+            { id: 6, name: 'Mocha Delight', price: 55, image: 'https://images.unsplash.com/photo-1507133750040-4a8f57021571?w=400', type: 'mocha', roast: 'dark', rating: 4.7 },
+            { id: 7, name: 'Colombian Supreme', price: 80, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400', type: 'americano', roast: 'medium', rating: 4.9 },
+            { id: 8, name: 'Ethiopian Yirgacheffe', price: 69, image: 'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=400', type: 'espresso', roast: 'light', rating: 4.8 }
+        ];
+
+        let currentFilters = {
+            types: [],
+            price: null,
+            roasts: [],
+            ratings: []
+        };
+
+        function displayProducts(productsToShow = products) {
+            const grid = document.getElementById('productGrid');
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            let wishlist = [];
+            
+            if (user) {
+                const allWishlists = JSON.parse(localStorage.getItem('wishlists')) || {};
+                wishlist = allWishlists[user.email] || [];
+            }
+            
+            if (productsToShow.length === 0) {
+                grid.innerHTML = '<div class="empty-state">No products match your filters.</div>';
+                document.getElementById('productCount').textContent = 'Showing 0 products';
+                return;
+            }
+
+            grid.innerHTML = productsToShow.map(product => {
+                const isInWishlist = wishlist.some(item => item.id === product.id);
+                return `
+                    <article>
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-details">
+                            <h3>${product.name}</h3>
+                            <p class="price">${product.price}</p>
+                            <button class="view-details" onclick="viewDetails(${product.id})">View Details</button>
+                            <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+                                ${isInWishlist ? 'In Wishlist' : 'Add to Wishlist'}
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+            
+            document.getElementById('productCount').textContent = `Showing ${productsToShow.length} products`;
+        }
+
+        function filterProducts() {
+            // Get selected types
+            const typeCheckboxes = document.querySelectorAll('input[name="type"]:checked');
+            currentFilters.types = Array.from(typeCheckboxes).map(cb => cb.value);
+
+            // Get selected price range
+            const priceRadio = document.querySelector('input[name="price"]:checked');
+            currentFilters.price = priceRadio ? priceRadio.value : null;
+
+            // Get selected roasts
+            const roastCheckboxes = document.querySelectorAll('input[name="roast"]:checked');
+            currentFilters.roasts = Array.from(roastCheckboxes).map(cb => cb.value);
+
+            // Get selected ratings
+            const ratingCheckboxes = document.querySelectorAll('input[name="rating"]:checked');
+            currentFilters.ratings = Array.from(ratingCheckboxes).map(cb => parseInt(cb.value));
+
+            // Filter products
+            const filteredProducts = products.filter(product => {
+                // Filter by type
+                if (currentFilters.types.length > 0 && !currentFilters.types.includes(product.type)) {
+                    return false;
+                }
+
+                // Filter by price
+                if (currentFilters.price) {
+                    const [min, max] = currentFilters.price.split('-').map(Number);
+                    if (product.price < min || product.price > max) {
+                        return false;
+                    }
+                }
+
+                // Filter by roast
+                if (currentFilters.roasts.length > 0 && !currentFilters.roasts.includes(product.roast)) {
+                    return false;
+                }
+
+                // Filter by rating
+                if (currentFilters.ratings.length > 0) {
+                    const maxRating = Math.max(...currentFilters.ratings);
+                    if (product.rating < maxRating) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            displayProducts(filteredProducts);
+        }
+
+        function clearFilters() {
+            // Uncheck all checkboxes and radios
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            
+            // Reset filters
+            currentFilters = {
+                types: [],
+                price: null,
+                roasts: [],
+                ratings: []
+            };
+            
+            // Display all products
+            displayProducts(products);
+        }
+
+        function viewDetails(id) {
+            const product = products.find(p => p.id === id);
+            localStorage.setItem('currentProduct', JSON.stringify(product));
+            window.location.href = 'detail.html';
+        }
+
+        function toggleWishlist(id) {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (!user) {
+                alert('Please sign in to add items to your wishlist');
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            const product = products.find(p => p.id === id);
+            
+            // Get all wishlists or initialize empty object
+            let allWishlists = JSON.parse(localStorage.getItem('wishlists')) || {};
+            
+            // Get user's wishlist or initialize empty array
+            let userWishlist = allWishlists[user.email] || [];
+            
+            const existingIndex = userWishlist.findIndex(item => item.id === id);
+            
+            if (existingIndex === -1) {
+                // Add to wishlist
+                userWishlist.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    type: product.type,
+                    addedAt: new Date().toISOString()
+                });
+                alert(`${product.name} added to wishlist!`);
+            } else {
+                // Remove from wishlist
+                userWishlist.splice(existingIndex, 1);
+                alert(`${product.name} removed from wishlist!`);
+            }
+            
+            // Save back to all wishlists
+            allWishlists[user.email] = userWishlist;
+            localStorage.setItem('wishlists', JSON.stringify(allWishlists));
+            
+            // Refresh the display to update button states
+            filterProducts();
+        }
+
+        // Initial display
+        displayProducts();
+    </script>
 </body>
 </html>
